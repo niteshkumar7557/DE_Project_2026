@@ -1,0 +1,27 @@
+{
+  "team_number": "T0048",
+  "group_lead": {
+    "name": "Nitesh Kumar",
+    "enrollment_no": "2501010309",
+    "github": "niteshkumar7557"
+  },
+  "members": [
+    {
+      "name": "Riya Agarwal",
+      "enrollment_no": "2501010381",
+      "github": "riyaagarwal5040"
+    },
+    {
+      "name": "Mansha Agarwal",
+      "enrollment_no": "2501010262",
+      "github": "ManshaAgarwal716"
+    },
+    {
+      "name": "Nihamika S Prakash",
+      "enrollment_no": "2501010302",
+      "github": "nihamika"
+    }
+  ],
+  "postgres_version": "18",
+  "laptop_used_for_benchmarks": "Macbook Pro M4"
+}
