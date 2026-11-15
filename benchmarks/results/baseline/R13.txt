@@ -1,0 +1,36 @@
+=== R13 run 1 ===
+Seq Scan on playlists p  (cost=5701.00..5907.00 rows=3158 width=24) (actual time=24.958..24.959 rows=0.00 loops=1)
+  Filter: (is_public AND (NOT (ANY (playlist_id = (hashed SubPlan 1).col1))))
+  Rows Removed by Filter: 10000
+  Buffers: shared hit=2657
+  SubPlan 1
+    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=4) (actual time=0.007..10.183 rows=250000.00 loops=1)
+          Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=87
+Planning Time: 0.211 ms
+Execution Time: 24.996 ms
+=== R13 run 2 ===
+Seq Scan on playlists p  (cost=5701.00..5907.00 rows=3158 width=24) (actual time=23.422..23.422 rows=0.00 loops=1)
+  Filter: (is_public AND (NOT (ANY (playlist_id = (hashed SubPlan 1).col1))))
+  Rows Removed by Filter: 10000
+  Buffers: shared hit=2657
+  SubPlan 1
+    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=4) (actual time=0.005..10.269 rows=250000.00 loops=1)
+          Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=87
+Planning Time: 0.172 ms
+Execution Time: 23.461 ms
+=== R13 run 3 ===
+Seq Scan on playlists p  (cost=5701.00..5907.00 rows=3158 width=24) (actual time=26.301..26.302 rows=0.00 loops=1)
+  Filter: (is_public AND (NOT (ANY (playlist_id = (hashed SubPlan 1).col1))))
+  Rows Removed by Filter: 10000
+  Buffers: shared hit=2657
+  SubPlan 1
+    ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=4) (actual time=0.010..10.940 rows=250000.00 loops=1)
+          Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=87
+Planning Time: 0.210 ms
+Execution Time: 26.344 ms

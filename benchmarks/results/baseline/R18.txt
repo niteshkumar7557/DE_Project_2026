@@ -1,0 +1,84 @@
+=== R18 run 1 ===
+Sort  (cost=6151.11..6151.12 rows=6 width=46) (actual time=15.280..16.002 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2587
+  ->  Finalize GroupAggregate  (cost=6149.68..6151.03 rows=6 width=46) (actual time=15.251..15.986 rows=6.00 loops=1)
+        Group Key: platform
+        Buffers: shared hit=2584
+        ->  Gather Merge  (cost=6149.68..6150.82 rows=10 width=22) (actual time=15.240..15.963 rows=12.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2584
+              ->  Sort  (cost=5149.67..5149.68 rows=6 width=22) (actual time=14.201..14.201 rows=6.00 loops=2)
+                    Sort Key: platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2584
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=5149.53..5149.59 rows=6 width=22) (actual time=13.728..13.729 rows=6.00 loops=2)
+                          Group Key: platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2576
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Seq Scan on streams  (cost=0.00..4046.59 rows=147059 width=7) (actual time=0.003..3.455 rows=125000.00 loops=2)
+                                Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.168 ms
+Execution Time: 16.060 ms
+=== R18 run 2 ===
+Sort  (cost=6151.11..6151.12 rows=6 width=46) (actual time=14.604..15.170 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2587
+  ->  Finalize GroupAggregate  (cost=6149.68..6151.03 rows=6 width=46) (actual time=14.593..15.165 rows=6.00 loops=1)
+        Group Key: platform
+        Buffers: shared hit=2584
+        ->  Gather Merge  (cost=6149.68..6150.82 rows=10 width=22) (actual time=14.574..15.142 rows=12.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2584
+              ->  Sort  (cost=5149.67..5149.68 rows=6 width=22) (actual time=13.702..13.702 rows=6.00 loops=2)
+                    Sort Key: platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2584
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=5149.53..5149.59 rows=6 width=22) (actual time=13.686..13.687 rows=6.00 loops=2)
+                          Group Key: platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2576
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Seq Scan on streams  (cost=0.00..4046.59 rows=147059 width=7) (actual time=0.003..3.414 rows=125000.00 loops=2)
+                                Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.160 ms
+Execution Time: 15.214 ms
+=== R18 run 3 ===
+Sort  (cost=6151.11..6151.12 rows=6 width=46) (actual time=15.353..16.202 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2587
+  ->  Finalize GroupAggregate  (cost=6149.68..6151.03 rows=6 width=46) (actual time=15.345..16.197 rows=6.00 loops=1)
+        Group Key: platform
+        Buffers: shared hit=2584
+        ->  Gather Merge  (cost=6149.68..6150.82 rows=10 width=22) (actual time=15.335..16.186 rows=12.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2584
+              ->  Sort  (cost=5149.67..5149.68 rows=6 width=22) (actual time=14.368..14.368 rows=6.00 loops=2)
+                    Sort Key: platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2584
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=5149.53..5149.59 rows=6 width=22) (actual time=14.349..14.349 rows=6.00 loops=2)
+                          Group Key: platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2576
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Seq Scan on streams  (cost=0.00..4046.59 rows=147059 width=7) (actual time=0.003..3.504 rows=125000.00 loops=2)
+                                Buffers: shared hit=2576
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.168 ms
+Execution Time: 16.252 ms

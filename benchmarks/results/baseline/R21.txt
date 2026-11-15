@@ -1,0 +1,45 @@
+=== R21 run 1 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.326..0.326 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using tracks_isrc_key on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.321..0.321 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.643 ms
+Execution Time: 0.348 ms
+=== R21 run 2 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.012..0.012 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using tracks_isrc_key on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.009..0.009 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.440 ms
+Execution Time: 0.032 ms
+=== R21 run 3 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.012..0.012 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using tracks_isrc_key on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.009..0.009 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using albums_pkey on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.001..0.002 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.418 ms
+Execution Time: 0.033 ms
