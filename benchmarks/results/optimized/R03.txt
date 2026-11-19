@@ -1,0 +1,57 @@
+=== R03 run 1 ===
+Limit  (cost=1106.12..1106.17 rows=20 width=21) (actual time=6.061..6.063 rows=20.00 loops=1)
+  Buffers: shared hit=678
+  ->  Sort  (cost=1106.12..1129.55 rows=9373 width=21) (actual time=6.060..6.061 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=678
+        ->  Bitmap Heap Scan on tracks  (cost=74.54..856.71 rows=9373 width=21) (actual time=0.443..5.521 rows=9128.00 loops=1)
+              Recheck Cond: (title ~~* '%love%'::text)
+              Heap Blocks: exact=665
+              Buffers: shared hit=675
+              ->  Bitmap Index Scan on idx_tracks_title_trgm  (cost=0.00..72.20 rows=9373 width=0) (actual time=0.388..0.388 rows=9128.00 loops=1)
+                    Index Cond: (title ~~* '%love%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=190
+Planning Time: 1.765 ms
+Execution Time: 6.106 ms
+=== R03 run 2 ===
+Limit  (cost=1106.12..1106.17 rows=20 width=21) (actual time=5.973..5.975 rows=20.00 loops=1)
+  Buffers: shared hit=678
+  ->  Sort  (cost=1106.12..1129.55 rows=9373 width=21) (actual time=5.973..5.973 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=678
+        ->  Bitmap Heap Scan on tracks  (cost=74.54..856.71 rows=9373 width=21) (actual time=0.474..5.433 rows=9128.00 loops=1)
+              Recheck Cond: (title ~~* '%love%'::text)
+              Heap Blocks: exact=665
+              Buffers: shared hit=675
+              ->  Bitmap Index Scan on idx_tracks_title_trgm  (cost=0.00..72.20 rows=9373 width=0) (actual time=0.425..0.426 rows=9128.00 loops=1)
+                    Index Cond: (title ~~* '%love%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=188
+Planning Time: 0.871 ms
+Execution Time: 6.016 ms
+=== R03 run 3 ===
+Limit  (cost=1106.12..1106.17 rows=20 width=21) (actual time=5.318..5.319 rows=20.00 loops=1)
+  Buffers: shared hit=678
+  ->  Sort  (cost=1106.12..1129.55 rows=9373 width=21) (actual time=5.318..5.318 rows=20.00 loops=1)
+        Sort Key: popularity DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=678
+        ->  Bitmap Heap Scan on tracks  (cost=74.54..856.71 rows=9373 width=21) (actual time=0.415..4.833 rows=9128.00 loops=1)
+              Recheck Cond: (title ~~* '%love%'::text)
+              Heap Blocks: exact=665
+              Buffers: shared hit=675
+              ->  Bitmap Index Scan on idx_tracks_title_trgm  (cost=0.00..72.20 rows=9373 width=0) (actual time=0.373..0.373 rows=9128.00 loops=1)
+                    Index Cond: (title ~~* '%love%'::text)
+                    Index Searches: 1
+                    Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=188
+Planning Time: 0.821 ms
+Execution Time: 5.356 ms

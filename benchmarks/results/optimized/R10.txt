@@ -1,0 +1,60 @@
+=== R10 run 1 ===
+GroupAggregate  (cost=4331.27..4645.89 rows=13983 width=18) (actual time=2.586..3.195 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=248
+  ->  Sort  (cost=4331.27..4366.23 rows=13983 width=10) (actual time=2.576..2.807 rows=13736.00 loops=1)
+        Sort Key: ((started_at)::date), platform
+        Sort Method: quicksort  Memory: 773kB
+        Buffers: shared hit=248
+        ->  Bitmap Heap Scan on streams  (cost=547.75..3368.45 rows=13983 width=10) (actual time=0.233..1.302 rows=13736.00 loops=1)
+              Recheck Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Blocks: exact=141
+              Buffers: shared hit=242
+              ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..544.25 rows=13983 width=0) (actual time=0.220..0.220 rows=13736.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=101
+Planning:
+  Buffers: shared hit=274
+Planning Time: 0.350 ms
+Execution Time: 3.229 ms
+=== R10 run 2 ===
+GroupAggregate  (cost=4331.27..4645.89 rows=13983 width=18) (actual time=2.605..3.201 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=248
+  ->  Sort  (cost=4331.27..4366.23 rows=13983 width=10) (actual time=2.595..2.820 rows=13736.00 loops=1)
+        Sort Key: ((started_at)::date), platform
+        Sort Method: quicksort  Memory: 773kB
+        Buffers: shared hit=248
+        ->  Bitmap Heap Scan on streams  (cost=547.75..3368.45 rows=13983 width=10) (actual time=0.241..1.369 rows=13736.00 loops=1)
+              Recheck Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Blocks: exact=141
+              Buffers: shared hit=242
+              ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..544.25 rows=13983 width=0) (actual time=0.228..0.228 rows=13736.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=101
+Planning:
+  Buffers: shared hit=274
+Planning Time: 0.383 ms
+Execution Time: 3.233 ms
+=== R10 run 3 ===
+GroupAggregate  (cost=4331.27..4645.89 rows=13983 width=18) (actual time=2.484..3.211 rows=180.00 loops=1)
+  Group Key: ((started_at)::date), platform
+  Buffers: shared hit=248
+  ->  Sort  (cost=4331.27..4366.23 rows=13983 width=10) (actual time=2.471..2.738 rows=13736.00 loops=1)
+        Sort Key: ((started_at)::date), platform
+        Sort Method: quicksort  Memory: 773kB
+        Buffers: shared hit=248
+        ->  Bitmap Heap Scan on streams  (cost=547.75..3368.45 rows=13983 width=10) (actual time=0.217..1.254 rows=13736.00 loops=1)
+              Recheck Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Blocks: exact=141
+              Buffers: shared hit=242
+              ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..544.25 rows=13983 width=0) (actual time=0.205..0.205 rows=13736.00 loops=1)
+                    Index Cond: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=101
+Planning:
+  Buffers: shared hit=274
+Planning Time: 0.326 ms
+Execution Time: 3.243 ms

@@ -1,0 +1,39 @@
+=== R02 run 1 ===
+Sort  (cost=8.64..8.66 rows=7 width=24) (actual time=0.475..0.475 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4 read=3
+  ->  Index Scan using idx_tracks_album_covering on tracks  (cost=0.42..8.54 rows=7 width=24) (actual time=0.460..0.462 rows=14.00 loops=1)
+        Index Cond: (album_id = 1469)
+        Index Searches: 1
+        Buffers: shared hit=1 read=3
+Planning:
+  Buffers: shared hit=193
+Planning Time: 0.410 ms
+Execution Time: 0.500 ms
+=== R02 run 2 ===
+Sort  (cost=8.64..8.66 rows=7 width=24) (actual time=0.020..0.020 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  Index Scan using idx_tracks_album_covering on tracks  (cost=0.42..8.54 rows=7 width=24) (actual time=0.008..0.010 rows=14.00 loops=1)
+        Index Cond: (album_id = 1469)
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=193
+Planning Time: 0.368 ms
+Execution Time: 0.039 ms
+=== R02 run 3 ===
+Sort  (cost=8.64..8.66 rows=7 width=24) (actual time=0.020..0.020 rows=14.00 loops=1)
+  Sort Key: disc_no, track_no
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  Index Scan using idx_tracks_album_covering on tracks  (cost=0.42..8.54 rows=7 width=24) (actual time=0.008..0.009 rows=14.00 loops=1)
+        Index Cond: (album_id = 1469)
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=193
+Planning Time: 0.374 ms
+Execution Time: 0.040 ms

@@ -1,0 +1,99 @@
+=== R01 run 1 ===
+Limit  (cost=1206.69..1206.71 rows=10 width=27) (actual time=1.275..1.276 rows=10.00 loops=1)
+  Buffers: shared hit=972 read=34
+  ->  Sort  (cost=1206.69..1206.77 rows=33 width=27) (actual time=1.274..1.275 rows=10.00 loops=1)
+        Sort Key: (count(*)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=972 read=34
+        ->  GroupAggregate  (cost=1.00..1205.98 rows=33 width=27) (actual time=0.782..1.260 rows=28.00 loops=1)
+              Group Key: t.track_id
+              Buffers: shared hit=969 read=34
+              ->  Nested Loop  (cost=1.00..1205.48 rows=33 width=19) (actual time=0.773..1.247 rows=39.00 loops=1)
+                    Join Filter: (ta.track_id = s.track_id)
+                    Buffers: shared hit=969 read=34
+                    ->  Nested Loop  (cost=0.58..1097.68 rows=163 width=23) (actual time=0.246..0.470 rows=160.00 loops=1)
+                          Buffers: shared hit=481 read=3
+                          ->  Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..7.14 rows=163 width=4) (actual time=0.236..0.246 rows=160.00 loops=1)
+                                Index Cond: (artist_id = 33)
+                                Heap Fetches: 0
+                                Index Searches: 1
+                                Buffers: shared hit=1 read=3
+                          ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..6.69 rows=1 width=19) (actual time=0.001..0.001 rows=1.00 loops=160)
+                                Index Cond: (track_id = ta.track_id)
+                                Index Searches: 160
+                                Buffers: shared hit=480
+                    ->  Index Only Scan using idx_streams_track_started on streams s  (cost=0.42..0.65 rows=1 width=4) (actual time=0.005..0.005 rows=0.24 loops=160)
+                          Index Cond: ((track_id = t.track_id) AND (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 39
+                          Index Searches: 160
+                          Buffers: shared hit=488 read=31
+Planning:
+  Buffers: shared hit=432 read=13
+Planning Time: 2.172 ms
+Execution Time: 1.318 ms
+=== R01 run 2 ===
+Limit  (cost=1206.69..1206.71 rows=10 width=27) (actual time=0.527..0.528 rows=10.00 loops=1)
+  Buffers: shared hit=1006
+  ->  Sort  (cost=1206.69..1206.77 rows=33 width=27) (actual time=0.526..0.527 rows=10.00 loops=1)
+        Sort Key: (count(*)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=1006
+        ->  GroupAggregate  (cost=1.00..1205.98 rows=33 width=27) (actual time=0.065..0.510 rows=28.00 loops=1)
+              Group Key: t.track_id
+              Buffers: shared hit=1003
+              ->  Nested Loop  (cost=1.00..1205.48 rows=33 width=19) (actual time=0.054..0.497 rows=39.00 loops=1)
+                    Join Filter: (ta.track_id = s.track_id)
+                    Buffers: shared hit=1003
+                    ->  Nested Loop  (cost=0.58..1097.68 rows=163 width=23) (actual time=0.016..0.254 rows=160.00 loops=1)
+                          Buffers: shared hit=484
+                          ->  Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..7.14 rows=163 width=4) (actual time=0.006..0.017 rows=160.00 loops=1)
+                                Index Cond: (artist_id = 33)
+                                Heap Fetches: 0
+                                Index Searches: 1
+                                Buffers: shared hit=4
+                          ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..6.69 rows=1 width=19) (actual time=0.001..0.001 rows=1.00 loops=160)
+                                Index Cond: (track_id = ta.track_id)
+                                Index Searches: 160
+                                Buffers: shared hit=480
+                    ->  Index Only Scan using idx_streams_track_started on streams s  (cost=0.42..0.65 rows=1 width=4) (actual time=0.001..0.001 rows=0.24 loops=160)
+                          Index Cond: ((track_id = t.track_id) AND (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 39
+                          Index Searches: 160
+                          Buffers: shared hit=519
+Planning:
+  Buffers: shared hit=453
+Planning Time: 1.330 ms
+Execution Time: 0.576 ms
+=== R01 run 3 ===
+Limit  (cost=1206.69..1206.71 rows=10 width=27) (actual time=0.484..0.486 rows=10.00 loops=1)
+  Buffers: shared hit=1006
+  ->  Sort  (cost=1206.69..1206.77 rows=33 width=27) (actual time=0.484..0.484 rows=10.00 loops=1)
+        Sort Key: (count(*)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=1006
+        ->  GroupAggregate  (cost=1.00..1205.98 rows=33 width=27) (actual time=0.059..0.469 rows=28.00 loops=1)
+              Group Key: t.track_id
+              Buffers: shared hit=1003
+              ->  Nested Loop  (cost=1.00..1205.48 rows=33 width=19) (actual time=0.050..0.458 rows=39.00 loops=1)
+                    Join Filter: (ta.track_id = s.track_id)
+                    Buffers: shared hit=1003
+                    ->  Nested Loop  (cost=0.58..1097.68 rows=163 width=23) (actual time=0.015..0.235 rows=160.00 loops=1)
+                          Buffers: shared hit=484
+                          ->  Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..7.14 rows=163 width=4) (actual time=0.006..0.016 rows=160.00 loops=1)
+                                Index Cond: (artist_id = 33)
+                                Heap Fetches: 0
+                                Index Searches: 1
+                                Buffers: shared hit=4
+                          ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..6.69 rows=1 width=19) (actual time=0.001..0.001 rows=1.00 loops=160)
+                                Index Cond: (track_id = ta.track_id)
+                                Index Searches: 160
+                                Buffers: shared hit=480
+                    ->  Index Only Scan using idx_streams_track_started on streams s  (cost=0.42..0.65 rows=1 width=4) (actual time=0.001..0.001 rows=0.24 loops=160)
+                          Index Cond: ((track_id = t.track_id) AND (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 39
+                          Index Searches: 160
+                          Buffers: shared hit=519
+Planning:
+  Buffers: shared hit=453
+Planning Time: 1.170 ms
+Execution Time: 0.528 ms

@@ -1,0 +1,99 @@
+=== R17 run 1 ===
+Sort  (cost=4047.88..4053.08 rows=2078 width=12) (actual time=3.538..3.538 rows=22.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=246 read=38
+  ->  HashAggregate  (cost=3855.46..3933.37 rows=2078 width=12) (actual time=3.417..3.529 rows=22.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 409kB
+        Rows Removed by Filter: 4826
+        Buffers: shared hit=243 read=38
+        ->  Hash Join  (cost=1036.80..3824.30 rows=6233 width=4) (actual time=1.704..3.012 rows=6087.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=243 read=38
+              ->  Bitmap Heap Scan on streams s  (cost=512.79..3263.58 rows=13983 width=4) (actual time=0.222..0.730 rows=13736.00 loops=1)
+                    Recheck Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Blocks: exact=141
+                    Buffers: shared hit=242
+                    ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..509.29 rows=13983 width=0) (actual time=0.212..0.212 rows=13736.00 loops=1)
+                          Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                          Index Searches: 1
+                          Buffers: shared hit=101
+              ->  Hash  (cost=356.87..356.87 rows=13372 width=4) (actual time=1.466..1.466 rows=13372.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 599kB
+                    Buffers: shared hit=1 read=38
+                    ->  Index Only Scan using idx_users_free on users u  (cost=0.29..356.87 rows=13372 width=4) (actual time=0.221..1.014 rows=13372.00 loops=1)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=38
+Planning:
+  Buffers: shared hit=359
+Planning Time: 0.521 ms
+Execution Time: 3.578 ms
+=== R17 run 2 ===
+Sort  (cost=4047.88..4053.08 rows=2078 width=12) (actual time=2.778..2.779 rows=22.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=284
+  ->  HashAggregate  (cost=3855.46..3933.37 rows=2078 width=12) (actual time=2.660..2.769 rows=22.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 409kB
+        Rows Removed by Filter: 4826
+        Buffers: shared hit=281
+        ->  Hash Join  (cost=1036.80..3824.30 rows=6233 width=4) (actual time=1.048..2.278 rows=6087.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=281
+              ->  Bitmap Heap Scan on streams s  (cost=512.79..3263.58 rows=13983 width=4) (actual time=0.211..0.705 rows=13736.00 loops=1)
+                    Recheck Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Blocks: exact=141
+                    Buffers: shared hit=242
+                    ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..509.29 rows=13983 width=0) (actual time=0.201..0.201 rows=13736.00 loops=1)
+                          Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                          Index Searches: 1
+                          Buffers: shared hit=101
+              ->  Hash  (cost=356.87..356.87 rows=13372 width=4) (actual time=0.827..0.827 rows=13372.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 599kB
+                    Buffers: shared hit=39
+                    ->  Index Only Scan using idx_users_free on users u  (cost=0.29..356.87 rows=13372 width=4) (actual time=0.005..0.381 rows=13372.00 loops=1)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=39
+Planning:
+  Buffers: shared hit=359
+Planning Time: 0.510 ms
+Execution Time: 2.817 ms
+=== R17 run 3 ===
+Sort  (cost=4047.88..4053.08 rows=2078 width=12) (actual time=2.813..2.814 rows=22.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=284
+  ->  HashAggregate  (cost=3855.46..3933.37 rows=2078 width=12) (actual time=2.694..2.804 rows=22.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 409kB
+        Rows Removed by Filter: 4826
+        Buffers: shared hit=281
+        ->  Hash Join  (cost=1036.80..3824.30 rows=6233 width=4) (actual time=1.051..2.299 rows=6087.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=281
+              ->  Bitmap Heap Scan on streams s  (cost=512.79..3263.58 rows=13983 width=4) (actual time=0.216..0.689 rows=13736.00 loops=1)
+                    Recheck Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                    Heap Blocks: exact=141
+                    Buffers: shared hit=242
+                    ->  Bitmap Index Scan on idx_streams_started_at  (cost=0.00..509.29 rows=13983 width=0) (actual time=0.206..0.206 rows=13736.00 loops=1)
+                          Index Cond: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                          Index Searches: 1
+                          Buffers: shared hit=101
+              ->  Hash  (cost=356.87..356.87 rows=13372 width=4) (actual time=0.824..0.824 rows=13372.00 loops=1)
+                    Buckets: 16384  Batches: 1  Memory Usage: 599kB
+                    Buffers: shared hit=39
+                    ->  Index Only Scan using idx_users_free on users u  (cost=0.29..356.87 rows=13372 width=4) (actual time=0.005..0.374 rows=13372.00 loops=1)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=39
+Planning:
+  Buffers: shared hit=359
+Planning Time: 0.530 ms
+Execution Time: 2.853 ms

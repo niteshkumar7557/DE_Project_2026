@@ -1,0 +1,75 @@
+=== R04 run 1 ===
+Limit  (cost=113.94..113.96 rows=9 width=33) (actual time=0.080..0.081 rows=6.00 loops=1)
+  Buffers: shared hit=27 read=3
+  ->  Sort  (cost=113.94..113.96 rows=9 width=33) (actual time=0.080..0.080 rows=6.00 loops=1)
+        Sort Key: s.started_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=27 read=3
+        ->  Nested Loop  (cost=4.78..113.80 rows=9 width=33) (actual time=0.042..0.070 rows=6.00 loops=1)
+              Buffers: shared hit=24 read=3
+              ->  Bitmap Heap Scan on streams s  (cost=4.49..39.01 rows=9 width=22) (actual time=0.036..0.045 rows=6.00 loops=1)
+                    Recheck Cond: (user_id = 1038)
+                    Heap Blocks: exact=6
+                    Buffers: shared hit=6 read=3
+                    ->  Bitmap Index Scan on idx_streams_user_started  (cost=0.00..4.49 rows=9 width=0) (actual time=0.032..0.032 rows=6.00 loops=1)
+                          Index Cond: (user_id = 1038)
+                          Index Searches: 1
+                          Buffers: shared read=3
+              ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.004..0.004 rows=1.00 loops=6)
+                    Index Cond: (track_id = s.track_id)
+                    Index Searches: 6
+                    Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=455
+Planning Time: 0.697 ms
+Execution Time: 0.100 ms
+=== R04 run 2 ===
+Limit  (cost=113.94..113.96 rows=9 width=33) (actual time=0.052..0.053 rows=6.00 loops=1)
+  Buffers: shared hit=30
+  ->  Sort  (cost=113.94..113.96 rows=9 width=33) (actual time=0.052..0.052 rows=6.00 loops=1)
+        Sort Key: s.started_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=30
+        ->  Nested Loop  (cost=4.78..113.80 rows=9 width=33) (actual time=0.014..0.043 rows=6.00 loops=1)
+              Buffers: shared hit=27
+              ->  Bitmap Heap Scan on streams s  (cost=4.49..39.01 rows=9 width=22) (actual time=0.009..0.018 rows=6.00 loops=1)
+                    Recheck Cond: (user_id = 1038)
+                    Heap Blocks: exact=6
+                    Buffers: shared hit=9
+                    ->  Bitmap Index Scan on idx_streams_user_started  (cost=0.00..4.49 rows=9 width=0) (actual time=0.005..0.005 rows=6.00 loops=1)
+                          Index Cond: (user_id = 1038)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+              ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.004..0.004 rows=1.00 loops=6)
+                    Index Cond: (track_id = s.track_id)
+                    Index Searches: 6
+                    Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=451
+Planning Time: 0.669 ms
+Execution Time: 0.072 ms
+=== R04 run 3 ===
+Limit  (cost=113.94..113.96 rows=9 width=33) (actual time=0.063..0.063 rows=6.00 loops=1)
+  Buffers: shared hit=30
+  ->  Sort  (cost=113.94..113.96 rows=9 width=33) (actual time=0.062..0.062 rows=6.00 loops=1)
+        Sort Key: s.started_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=30
+        ->  Nested Loop  (cost=4.78..113.80 rows=9 width=33) (actual time=0.018..0.051 rows=6.00 loops=1)
+              Buffers: shared hit=27
+              ->  Bitmap Heap Scan on streams s  (cost=4.49..39.01 rows=9 width=22) (actual time=0.013..0.023 rows=6.00 loops=1)
+                    Recheck Cond: (user_id = 1038)
+                    Heap Blocks: exact=6
+                    Buffers: shared hit=9
+                    ->  Bitmap Index Scan on idx_streams_user_started  (cost=0.00..4.49 rows=9 width=0) (actual time=0.006..0.006 rows=6.00 loops=1)
+                          Index Cond: (user_id = 1038)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+              ->  Index Scan using tracks_pkey on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.004..0.004 rows=1.00 loops=6)
+                    Index Cond: (track_id = s.track_id)
+                    Index Searches: 6
+                    Buffers: shared hit=18
+Planning:
+  Buffers: shared hit=451
+Planning Time: 1.716 ms
+Execution Time: 0.089 ms
